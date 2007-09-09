@@ -1,17 +1,18 @@
-%define major	0
+%define major 0
 %define libname %mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
 
 Summary:	Simple database library
 Name:		sdb
 Version:	0.6.0
-Release:	%mkrel 8
+Release:	%mkrel 9
 License:	GPL
 Group:		System/Libraries
 URL:		http://siag.nu/libsdb/
 Source0:	http://siag.nu/pub/libsdb/%{name}-%{version}.tar.bz2
 Patch0:		sdb-0.6.0-no_ms.diff
 Patch1:		sdb-0.6.0-postgres.diff
-BuildRequires:	MySQL-devel
+BuildRequires:	mysql-devel
 BuildRequires:	gdbm-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
@@ -38,21 +39,22 @@ Group:		System/Libraries
 %description -n	%{libname}
 This package contains libraries necessary for %{name}.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Development header files and libraries for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}
-Requires:	MySQL-devel
+Requires:	mysql-devel
 Requires:	gdbm-devel
 Requires:	openssl-devel
 Requires:	postgresql-devel
 Requires:	sqlite-devel
 Requires:	unixODBC-devel
 Requires:	zlib-devel
-Provides:	%{name}-devel lib%{name}-devel
-Obsoletes:	%{name}-devel lib%{name}-devel
+Provides:	%{name}-devel = %{version}-%{release}
+Provides:	lib%{name}-devel = %{version}-%{release}
+Obsoletes:	%{mklibname %{name} 0 -d}
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 This package contains the development header files and libraries
 for %{name}.
 
@@ -129,7 +131,7 @@ rm -f %{buildroot}%{_mandir}/man3/sdb_*
 %defattr(-,root,root)
 %{_libdir}/*.so.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %if %mdkversion >= 1020
 %multiarch %{multiarch_bindir}/sdb-config
@@ -138,5 +140,3 @@ rm -f %{buildroot}%{_mandir}/man3/sdb_*
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
-
-
