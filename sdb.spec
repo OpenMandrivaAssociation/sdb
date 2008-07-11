@@ -4,12 +4,12 @@
 
 Summary:	Simple database library
 Name:		sdb
-Version:	0.6.0
-Release:	%mkrel 9
+Version:	0.10.0
+Release:	%mkrel 1
 License:	GPL
 Group:		System/Libraries
 URL:		http://siag.nu/libsdb/
-Source0:	http://siag.nu/pub/libsdb/%{name}-%{version}.tar.bz2
+Source0:	http://siag.nu/pub/libsdb/%{name}-%{version}.tar.gz
 Patch0:		sdb-0.6.0-no_ms.diff
 Patch1:		sdb-0.6.0-postgres.diff
 BuildRequires:	mysql-devel
@@ -20,10 +20,8 @@ BuildRequires:	postgresql-devel
 BuildRequires:	sqlite-devel
 BuildRequires:	unixODBC-devel
 BuildRequires:	zlib-devel
-%if %mdkversion >= 1020
 BuildRequires:	multiarch-utils >= 1.0.3
-%endif
-BuildRoot:	%{_tmppath}/%{name}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This is libsdb, the simple database library, which provides a way 
@@ -89,7 +87,7 @@ make CFLAGS="%{optflags} -fPIC "\
     INCDIR=%{_includedir}
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 install -d %{buildroot}%{_bindir}
 install -d %{buildroot}%{_libdir}
@@ -104,9 +102,7 @@ make \
     INCDIR=%{buildroot}%{_includedir} \
     install
 
-%if %mdkversion >= 1020
 %multiarch_binaries %{buildroot}%{_bindir}/sdb-config
-%endif
 
 # remove invalid manpages
 rm -f %{buildroot}%{_mandir}/man3/sdb_*
@@ -120,7 +116,7 @@ rm -f %{buildroot}%{_mandir}/man3/sdb_*
 %endif
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files -n %{name}
 %defattr(-,root,root)
@@ -137,9 +133,7 @@ rm -f %{buildroot}%{_mandir}/man3/sdb_*
 
 %files -n %{develname}
 %defattr(-,root,root)
-%if %mdkversion >= 1020
 %multiarch %{multiarch_bindir}/sdb-config
-%endif
 %{_bindir}/sdb-config
 %{_libdir}/*.a
 %{_libdir}/*.so
