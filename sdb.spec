@@ -5,7 +5,7 @@
 Summary:	Simple database library
 Name:		sdb
 Version:	0.10.0
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPL
 Group:		System/Libraries
 URL:		http://siag.nu/libsdb/
@@ -80,6 +80,7 @@ perl -pi -e "s|/lib |%{_lib} |g" configure
 perl -pi -e "s|/sbin/ldconfig|#/sbin/ldconfig|g" Makefile
 
 make CFLAGS="%{optflags} -fPIC "\
+    LDFLAGS="%ldflags" \
     PREFIX=%{_prefix} \
     BINDIR=%{_bindir} \
     LIBDIR=%{_libdir} \
