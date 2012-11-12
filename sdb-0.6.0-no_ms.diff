@@ -1,0 +1,14 @@
+--- odbc_driver.c	2005-01-10 15:47:58.000000000 +0100
++++ odbc_driver.c.oden	2005-01-25 10:57:36.990767538 +0100
+@@ -19,11 +19,6 @@
+ 
+ #ifdef HAVE_LIBODBC
+ 
+-/* Needed for MS quasi-types */
+-#ifdef HAVE_WINDOWS_H
+-#include <windows.h>
+-#endif
+-
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <sql.h>

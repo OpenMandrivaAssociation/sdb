@@ -1,0 +1,11 @@
+--- postgres_driver.c	2005-01-10 15:47:58.000000000 +0100
++++ postgres_driver.c.oden	2005-01-25 11:00:29.324783332 +0100
+@@ -23,7 +23,7 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
+-#include <libpq-fe.h>
++#include <pgsql/libpq-fe.h>
+ #include "common.h"
+ #include "sdb.h"
+ 
