@@ -1,7 +1,7 @@
 Name:		sdb
 Summary:	SDB client
 Version:	2.1.23
-Release:	1
+Release:	2
 Group:		Development/Other
 License:	Apache-2.0
 Source0:	%{name}_%{version}.tar.gz
