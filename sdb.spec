@@ -14,7 +14,7 @@ SDB client which communicate with sdbd daemon on Tizen device
 
 %prep
 %setup -q -n %{name}-%{version}
-%apply_patches
+%autopatch -p1
 
 %build
 %make CC=%{__cc} TARGET_HOST=true MODULE=sdb
