@@ -7,6 +7,7 @@ License:	Apache-2.0
 Source0:	%{name}_%{version}.tar.gz
 
 Requires:	udev
+BuildRequires:	make
 BuildRequires:	ncurses-devel
 
 %description
